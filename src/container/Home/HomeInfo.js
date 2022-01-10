@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CCallout, CSpinner } from "@coreui/react";
-import { db } from "./../../firebase";
+import db from "./../../firebase";
 import Spinner from "./../../component/Spinner/Spinner";
 
 const HomeInfo = () => {

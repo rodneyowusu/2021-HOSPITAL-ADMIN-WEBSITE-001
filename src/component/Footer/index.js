@@ -4,7 +4,9 @@ import { CFooter, CLink } from "@coreui/react";
 const Footer = () => {
   return (
     <>
-      <CFooter>
+      <CFooter
+        style={{ marginTop: "10px", display: "flex", position: "relative" }}
+      >
         <div>
           <CLink target="blank" href="https://ayireclinic.com">
             AyireClinic

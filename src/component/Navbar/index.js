@@ -46,18 +46,24 @@ const Navbar = ({ toggle }) => {
           <NavbarContainer>
             <NavLogo to="/" onClick={toggleHome}>
               <Avatar src={Image} style={{ marginRight: "0.5rem" }} />
-              AyireClinic
+              AyireAdmin
             </NavLogo>
             <MobileIcon onClick={toggle}>
               <FaBars />
             </MobileIcon>
             <NavMenu>
               <NavItem>
-                <NavLinks to="/about">Staff Entry</NavLinks>
+                <NavLinks to="/staffentry">Staff Entry</NavLinks>
+              </NavItem>
+              <NavItem>
+                <NavLinks to="/ceoentry">CEO Entry</NavLinks>
+              </NavItem>
+              <NavItem>
+                <NavLinks to="/staffentry">Staff Entry</NavLinks>
               </NavItem>
             </NavMenu>
             <NavBtn>
-              <NavBtnLink to="/about">Logout</NavBtnLink>
+              <NavBtnLink to="/staffentry">Logout</NavBtnLink>
             </NavBtn>
           </NavbarContainer>
         </Nav>
