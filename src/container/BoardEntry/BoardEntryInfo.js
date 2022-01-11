@@ -3,6 +3,8 @@ import { CContainer, CButton } from "@coreui/react";
 import "./Form.css";
 import db from "./../../firebase";
 import { storage } from "./../../firebase";
+import { addDoc, collection } from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 export default function BoardEntryInfo() {
   const [staffName, setName] = useState("");
@@ -23,15 +25,18 @@ export default function BoardEntryInfo() {
     e.preventDefault();
     setLoader(true);
 
-    db.collection("Board")
-      .add({
-        staffName: staffName,
-        phoneNo: phoneNo,
-        staffAboutTitle: "About " + staffName,
-        staffAbout: staffAbout,
-        staffImg: url,
-        date: new Date().getTime(),
-      })
+    let docData = {
+      staffName: staffName,
+      phoneNo: phoneNo,
+      staffAboutTitle: "About " + staffName,
+      staffAbout: staffAbout,
+      staffImg: url,
+      date: new Date().getTime(),
+    };
+
+    //This helps to create auto-generated id
+    const colRef = collection(db, "Board");
+    addDoc(colRef, docData)
       .then(() => {
         setLoader(false);
         alert("Board Member has been added Successfully");
@@ -48,8 +53,34 @@ export default function BoardEntryInfo() {
     setImage(null);
   };
 
+  // const handleUpload = () => {
+  //   const uploadTask = storage.ref(`images/${image.name}`).put(image);
+  //   uploadTask.on(
+  //     "state_changed",
+  //     (snapshot) => {
+  //       const progress = Math.round(
+  //         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+  //       );
+  //       setProgress(progress);
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //     },
+  //     () => {
+  //       storage
+  //         .ref("images")
+  //         .child(image.name)
+  //         .getDownloadURL()
+  //         .then((url) => {
+  //           setUrl(url);
+  //         });
+  //     }
+  //   );
+  // };
+
   const handleUpload = () => {
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    const storageRef = ref(storage, `images/${image.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, image);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -62,13 +93,9 @@ export default function BoardEntryInfo() {
         console.log(error);
       },
       () => {
-        storage
-          .ref("images")
-          .child(image.name)
-          .getDownloadURL()
-          .then((url) => {
-            setUrl(url);
-          });
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          setUrl(url);
+        });
       }
     );
   };
@@ -79,7 +106,7 @@ export default function BoardEntryInfo() {
     <>
       <CContainer
         fluid
-        sm="small"
+        className="container-sm"
         style={{ marginTop: "70px", marginBottom: " 90px" }}
       >
         <form className="form" onSubmit={handleSubmit}>
@@ -93,7 +120,9 @@ export default function BoardEntryInfo() {
             name="name"
             onChange={(e) => setName(e.target.value)}
           />
-          <label for="phone">Phone No (This Won't Be Displayed on Site)</label>
+          <label htmlFor="phone">
+            Phone No (This Won't Be Displayed on Site)
+          </label>
           <input
             placeholder="Phone Number"
             value={phoneNo}
@@ -110,13 +139,13 @@ export default function BoardEntryInfo() {
           />
           <CButton
             type="button"
-            class="btn btn-secondary rounded-pill btn-sm"
+            className="btn btn-secondary rounded-pill btn-sm"
             onClick={handleUpload}
           >
             Upload
           </CButton>
           {uploaded}
-          {url}
+
           <label style={{ marginTop: "15px" }}>About</label>
           <textarea
             placeholder="About the staff"

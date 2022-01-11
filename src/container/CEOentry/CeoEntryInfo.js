@@ -3,6 +3,8 @@ import { CContainer, CButton } from "@coreui/react";
 import "./Form.css";
 import db from "./../../firebase";
 import { storage } from "./../../firebase";
+import { addDoc, collection } from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 export default function AboutInfo() {
   const [staffName, setName] = useState("");
@@ -24,19 +26,21 @@ export default function AboutInfo() {
     e.preventDefault();
     setLoader(true);
 
-    db.collection("CEO")
-      .add({
-        staffName: staffName,
-        staffPosition: staffPosition,
-        phoneNo: phoneNo,
-        staffAboutTitle: "About " + staffName,
-        staffAbout: staffAbout,
-        staffImg: url,
-        date: new Date().getTime(),
-      })
+    let docData = {
+      staffName: staffName,
+      phoneNo: phoneNo,
+      staffAboutTitle: "About " + staffName,
+      staffAbout: staffAbout,
+      staffImg: url,
+      date: new Date().getTime(),
+    };
+
+    //This helps to create auto-generated id
+    const colRef = collection(db, "CEO");
+    addDoc(colRef, docData)
       .then(() => {
         setLoader(false);
-        alert("CEO member has been added");
+        alert("CEO Member has been added Successfully");
       })
       .catch((error) => {
         alert(error.message);
@@ -44,14 +48,15 @@ export default function AboutInfo() {
       });
 
     setName("");
-    setPosition("");
+
     setphoneNo("");
     setAbout("");
     setImage(null);
   };
 
   const handleUpload = () => {
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    const storageRef = ref(storage, `images/${image.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, image);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -64,13 +69,9 @@ export default function AboutInfo() {
         console.log(error);
       },
       () => {
-        storage
-          .ref("images")
-          .child(image.name)
-          .getDownloadURL()
-          .then((url) => {
-            setUrl(url);
-          });
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          setUrl(url);
+        });
       }
     );
   };
@@ -81,7 +82,7 @@ export default function AboutInfo() {
     <>
       <CContainer
         fluid
-        sm="small"
+        className="container-sm"
         style={{ marginTop: "70px", marginBottom: " 90px" }}
       >
         <form className="form" onSubmit={handleSubmit}>
@@ -105,7 +106,9 @@ export default function AboutInfo() {
             onChange={(e) => setPosition(e.target.value)}
           />
 
-          <label for="phone">Phone No (This Won't Be Displayed on Site)</label>
+          <label htmlFor="phone">
+            Phone No (This Won't Be Displayed on Site)
+          </label>
           <input
             placeholder="Phone Number"
             value={phoneNo}
@@ -125,7 +128,7 @@ export default function AboutInfo() {
 
           <CButton
             type="button"
-            class="btn btn-secondary rounded-pill btn-sm"
+            className="btn btn-secondary rounded-pill btn-sm"
             onClick={handleUpload}
           >
             Upload

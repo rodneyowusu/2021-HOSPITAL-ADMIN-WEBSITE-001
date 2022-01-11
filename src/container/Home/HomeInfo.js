@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CCallout, CContainer } from "@coreui/react";
 import db from "./../../firebase";
+import { collection, getDocs } from "firebase/firestore";
 import Spinner from "./../../component/Spinner/Spinner";
 import "./Home.css";
 
@@ -8,16 +9,34 @@ const HomeInfo = () => {
   const [bookInfo, setbookInfo] = useState("");
   const [loading, setloading] = useState(false);
 
+  // useEffect(() => {
+  //   setloading(true);
+  //   db.collection("contacts").onSnapshot((snapshot) => {
+  //     const newBookinfo = snapshot.docs.map((doc) => ({
+  //       id: doc.id,
+  //       ...doc.data(),
+  //     }));
+  //     setbookInfo(newBookinfo);
+  //     setloading(false);
+  //   });
+  // }, []);
+
   useEffect(() => {
     setloading(true);
-    db.collection("contacts").onSnapshot((snapshot) => {
-      const newBookinfo = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setbookInfo(newBookinfo);
-      setloading(false);
-    });
+    const colRef = collection(db, "contacts");
+    getDocs(colRef)
+      .then((snapshot) => {
+        let newBookinfo = [];
+        snapshot.docs.forEach((doc) => {
+          newBookinfo.push({ id: doc.id, ...doc.data() });
+        });
+
+        setbookInfo(newBookinfo);
+        setloading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   // const theinfo = useBookInfo();
