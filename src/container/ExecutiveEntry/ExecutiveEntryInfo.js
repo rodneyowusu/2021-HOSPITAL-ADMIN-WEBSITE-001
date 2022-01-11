@@ -24,7 +24,7 @@ export default function AboutInfo() {
     e.preventDefault();
     setLoader(true);
 
-    db.collection("CEO")
+    db.collection("ExecutiveDirectors")
       .add({
         staffName: staffName,
         staffPosition: staffPosition,
@@ -36,7 +36,7 @@ export default function AboutInfo() {
       })
       .then(() => {
         setLoader(false);
-        alert("CEO member has been added");
+        alert("Executive member has been added");
       })
       .catch((error) => {
         alert(error.message);
@@ -86,7 +86,7 @@ export default function AboutInfo() {
       >
         <form className="form" onSubmit={handleSubmit}>
           <h1>
-            Add <b>CEO</b> Personnel Here
+            Add <b>EXECUTIVE</b> Personnel Here
           </h1>
 
           <label>Name</label>

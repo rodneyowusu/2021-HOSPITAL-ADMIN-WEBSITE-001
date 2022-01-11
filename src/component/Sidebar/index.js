@@ -21,15 +21,18 @@ const SideBar = ({ isOpen, toggle }) => {
           <SidebarLink to="/staffentry" onClick={toggle}>
             Staff Entry
           </SidebarLink>
+          <SidebarLink to="/boardentry" onClick={toggle}>
+            Board Entry
+          </SidebarLink>
+          <SidebarLink to="/executiveentry" onClick={toggle}>
+            Exe. Director Entry
+          </SidebarLink>
           <SidebarLink to="/ceoentry" onClick={toggle}>
             CEO Entry
           </SidebarLink>
-          <SidebarLink to="/staffentry" onClick={toggle}>
-            Staff Entry
-          </SidebarLink>
         </SidebarMenu>
         <SideBtnWrap>
-          <SidebarRoute to="/about">Logout</SidebarRoute>
+          <SidebarRoute to="/">Logout</SidebarRoute>
         </SideBtnWrap>
       </SidebarWrapper>
     </SideBarContainer>

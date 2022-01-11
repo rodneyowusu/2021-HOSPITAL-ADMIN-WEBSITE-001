@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { CCallout, CSpinner } from "@coreui/react";
+import { CCallout, CContainer } from "@coreui/react";
 import db from "./../../firebase";
 import Spinner from "./../../component/Spinner/Spinner";
 
@@ -65,7 +65,11 @@ const HomeInfo = () => {
     generalInfo = <Spinner />;
   }
 
-  return <>{generalInfo}</>;
+  return (
+    <CContainer fluid style={{ minHeight: "500px" }}>
+      {generalInfo}
+    </CContainer>
+  );
 };
 
 export default HomeInfo;

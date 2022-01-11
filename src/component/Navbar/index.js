@@ -55,15 +55,19 @@ const Navbar = ({ toggle }) => {
               <NavItem>
                 <NavLinks to="/staffentry">Staff Entry</NavLinks>
               </NavItem>
+
+              <NavItem>
+                <NavLinks to="/boardentry">Board Entry</NavLinks>
+              </NavItem>
+              <NavItem>
+                <NavLinks to="/executiveentry">Exe. Director Entry</NavLinks>
+              </NavItem>
               <NavItem>
                 <NavLinks to="/ceoentry">CEO Entry</NavLinks>
               </NavItem>
-              <NavItem>
-                <NavLinks to="/staffentry">Staff Entry</NavLinks>
-              </NavItem>
             </NavMenu>
             <NavBtn>
-              <NavBtnLink to="/staffentry">Logout</NavBtnLink>
+              <NavBtnLink to="/">Logout</NavBtnLink>
             </NavBtn>
           </NavbarContainer>
         </Nav>

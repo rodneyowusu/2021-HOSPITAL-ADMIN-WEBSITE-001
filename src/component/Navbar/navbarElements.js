@@ -19,6 +19,37 @@ export const Nav = styled.nav`
   @media screen and (max-width: 768px) {
     transition: 0.8s all ease;
   }
+
+  @media screen and (max-height: 700px) {
+    margin-bottom: 50px;
+  }
+  @media screen and (max-height: 650px) {
+    margin-bottom: 250px;
+  }
+
+  @media screen and (max-height: 600px) {
+    margin-bottom: 300px;
+  }
+
+  @media screen and (max-height: 530px) {
+    margin-bottom: 350px;
+  }
+
+  @media screen and (max-height: 450px) {
+    margin-bottom: 400px;
+  }
+
+  @media screen and (max-height: 400px) {
+    margin-bottom: 400px;
+  }
+
+  @media screen and (max-height: 330px) {
+    margin-bottom: 500px;
+  }
+
+  @media screen and (max-width: 300px) {
+    margin-bottom: 170px;
+  }
 `;
 
 export const NavbarContainer = styled.div`

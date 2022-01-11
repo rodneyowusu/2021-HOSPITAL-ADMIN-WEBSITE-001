@@ -3,9 +3,9 @@ import Footer from "../../component/Footer";
 import Navbar from "../../component/Navbar";
 import ScrollToTop from "../../component/ScrollToTop";
 import SideBar from "../../component/Sidebar";
-import CeoEntryInfo from "./CeoEntryInfo";
+import ExecutiveEntryInfo from "./ExecutiveEntryInfo";
 
-const CEOentry = () => {
+const ExecutiveEntry = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
@@ -17,10 +17,10 @@ const CEOentry = () => {
       <ScrollToTop />
       <SideBar isOpen={isOpen} toggle={toggle} />
       <Navbar toggle={toggle} />
-      <CeoEntryInfo />
+      <ExecutiveEntryInfo />
       <Footer />
     </>
   );
 };
 
-export default CEOentry;
+export default ExecutiveEntry;

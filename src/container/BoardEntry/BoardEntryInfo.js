@@ -4,9 +4,8 @@ import "./Form.css";
 import db from "./../../firebase";
 import { storage } from "./../../firebase";
 
-export default function AboutInfo() {
+export default function BoardEntryInfo() {
   const [staffName, setName] = useState("");
-  const [staffPosition, setPosition] = useState("");
   const [phoneNo, setphoneNo] = useState("");
   const [staffAbout, setAbout] = useState("");
   const [loader, setLoader] = useState(false);
@@ -24,10 +23,9 @@ export default function AboutInfo() {
     e.preventDefault();
     setLoader(true);
 
-    db.collection("CEO")
+    db.collection("Board")
       .add({
         staffName: staffName,
-        staffPosition: staffPosition,
         phoneNo: phoneNo,
         staffAboutTitle: "About " + staffName,
         staffAbout: staffAbout,
@@ -36,7 +34,7 @@ export default function AboutInfo() {
       })
       .then(() => {
         setLoader(false);
-        alert("CEO member has been added");
+        alert("Board Member has been added Successfully");
       })
       .catch((error) => {
         alert(error.message);
@@ -44,7 +42,7 @@ export default function AboutInfo() {
       });
 
     setName("");
-    setPosition("");
+
     setphoneNo("");
     setAbout("");
     setImage(null);
@@ -86,9 +84,8 @@ export default function AboutInfo() {
       >
         <form className="form" onSubmit={handleSubmit}>
           <h1>
-            Add <b>CEO</b> Personnel Here
+            Add <b>BOARD</b> Personnel Here
           </h1>
-
           <label>Name</label>
           <input
             placeholder="Name"
@@ -96,24 +93,13 @@ export default function AboutInfo() {
             name="name"
             onChange={(e) => setName(e.target.value)}
           />
-
-          <label>Position</label>
-          <input
-            placeholder="Position"
-            value={staffPosition}
-            name="position"
-            onChange={(e) => setPosition(e.target.value)}
-          />
-
           <label for="phone">Phone No (This Won't Be Displayed on Site)</label>
           <input
             placeholder="Phone Number"
             value={phoneNo}
             onChange={(e) => setphoneNo(e.target.value)}
           />
-
           <label>Upload Image (Wait to see "UPLOADED" before you submit)</label>
-
           <input
             style={{
               fontSize: "12px",
@@ -122,7 +108,6 @@ export default function AboutInfo() {
             type="file"
             onChange={handleChange}
           />
-
           <CButton
             type="button"
             class="btn btn-secondary rounded-pill btn-sm"
@@ -131,7 +116,7 @@ export default function AboutInfo() {
             Upload
           </CButton>
           {uploaded}
-
+          {url}
           <label style={{ marginTop: "15px" }}>About</label>
           <textarea
             placeholder="About the staff"
@@ -139,7 +124,6 @@ export default function AboutInfo() {
             name="About"
             onChange={(e) => setAbout(e.target.value)}
           ></textarea>
-
           <button
             className="appbutton"
             type="submit"

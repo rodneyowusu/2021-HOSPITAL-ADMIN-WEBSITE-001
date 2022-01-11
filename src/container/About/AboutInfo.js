@@ -75,17 +75,19 @@ export default function AboutInfo() {
     );
   };
 
-  let uploaded = progress === 100 ? <p>uploaded</p> : "";
+  let uploaded = progress === 100 && url !== "" ? <p>uploaded</p> : "";
 
   return (
     <>
       <CContainer
         fluid
         sm="small"
-        style={{ marginTop: "100px", marginBottom: " 90px" }}
+        style={{ marginTop: "70px", marginBottom: " 90px" }}
       >
         <form className="form" onSubmit={handleSubmit}>
-          <h1>Add Staff Personnel Here</h1>
+          <h1>
+            Add <b>STAFF</b> Personnel Here
+          </h1>
 
           <label>Name</label>
           <input
@@ -141,7 +143,9 @@ export default function AboutInfo() {
           <button
             className="appbutton"
             type="submit"
-            style={{ background: loader ? "#ccc" : " rgb(2, 2, 110)" }}
+            style={{
+              background: loader ? "#ccc" : " rgb(2, 2, 110)",
+            }}
           >
             Submit
           </button>
