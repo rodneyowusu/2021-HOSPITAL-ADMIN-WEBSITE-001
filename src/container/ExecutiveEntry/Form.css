@@ -82,6 +82,30 @@ textarea:focus {
   margin-top: 10px;
 }
 
+@media screen and (max-height: 640px) {
+  .appbutton {
+    margin-bottom: 200px;
+  }
+}
+
+@media screen and (max-height: 450px) {
+  .appbutton {
+    margin-bottom: 300px;
+  }
+}
+
+@media screen and (max-height: 350px) {
+  .appbutton {
+    margin-bottom: 420px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .appbutton {
+    margin-bottom: 150px;
+  }
+}
+
 .form > button:hover {
   background-color: rgb(0, 0, 196);
 }

@@ -1,0 +1,37 @@
+.thebody {
+  margin-top: -50px;
+}
+@media screen and (max-height: 660px) {
+  .thebody {
+    margin-top: -80px;
+  }
+}
+
+@media screen and (max-height: 650px) {
+  .thebody {
+    margin-top: -230px;
+  }
+}
+@media screen and (max-height: 610px) {
+  .thebody {
+    margin-top: -180px;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .thebody {
+    margin-top: -250px;
+  }
+}
+
+@media screen and (max-height: 470px) {
+  .thebody {
+    margin-top: -320px;
+  }
+}
+
+@media screen and (max-height: 315px) {
+  .thebody {
+    margin-top: -420px;
+  }
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CCallout, CContainer } from "@coreui/react";
 import db from "./../../firebase";
 import Spinner from "./../../component/Spinner/Spinner";
+import "./Home.css";
 
 const HomeInfo = () => {
   const [bookInfo, setbookInfo] = useState("");
@@ -40,7 +41,11 @@ const HomeInfo = () => {
   let generalInfo = sortedDates.map((dates) => {
     return infoarray.map((info) =>
       dates == info[1].date ? (
-        <CCallout color="primary" key={info[1].id}>
+        <CCallout
+          style={{ marginTop: "70px" }}
+          color="primary"
+          key={info[1].id}
+        >
           <p>Name : {info[1].name}</p>
           <p>Phone Number : {info[1].phoneNo}</p>
           <p>Email : {info[1].email}</p>
@@ -66,9 +71,11 @@ const HomeInfo = () => {
   }
 
   return (
-    <CContainer fluid style={{ minHeight: "500px" }}>
-      {generalInfo}
-    </CContainer>
+    <div className="thebody">
+      <CContainer fluid style={{ minHeight: "500px", marginTop: "2px" }}>
+        {generalInfo}
+      </CContainer>
+    </div>
   );
 };
 
