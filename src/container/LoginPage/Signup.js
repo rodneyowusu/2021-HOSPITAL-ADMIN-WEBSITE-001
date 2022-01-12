@@ -31,7 +31,7 @@ const Signup = () => {
         style={{ marginTop: "70px", marginBottom: " 90px", maxWidth: "500px" }}
       >
         <div className="p-4 box">
-          <h2 className="mb-3">Firebase Auth Signup</h2>
+          <h2 className="mb-3">Ayire Admin Signup</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -51,9 +51,16 @@ const Signup = () => {
             </Form.Group>
 
             <div className="d-grid gap-2">
-              <Button variant="primary" type="Submit">
+              {/* <Button disabled variant="primary" type="Submit">
+                Sign up
+              </Button> */}
+              <Button variant="primary" disabled>
                 Sign up
               </Button>
+              <Alert variant="danger">
+                Kindly Contact rodneyowusu12@gmail.com for an acount
+              </Alert>
+              ;
             </div>
           </Form>
         </div>
