@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CContainer, CButton } from "@coreui/react";
 import "./Form.css";
-import db from "./../../firebase";
+import { db } from "./../../firebase";
 import { storage } from "./../../firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";

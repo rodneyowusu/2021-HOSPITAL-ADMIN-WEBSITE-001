@@ -5,6 +5,14 @@ import Image from "./../Images/Logo.jpg";
 import { animateScroll as scroll } from "react-scroll";
 import { Avatar } from "@material-ui/core";
 import {
+  CButton,
+  CDropdown,
+  CDropdownToggle,
+  CDropdownMenu,
+  CDropdownItem,
+} from "@coreui/react";
+
+import {
   Nav,
   NavbarContainer,
   NavLogo,
@@ -13,10 +21,10 @@ import {
   NavItem,
   NavLinks,
   NavBtn,
-  NavBtnLink,
+  DropNavLinks,
 } from "./navbarElements";
 
-const Navbar = ({ toggle }) => {
+const Navbar = ({ toggle, handleLogout }) => {
   //This is to initiate the change in Navbar per scroll
   // const [scrollNav, setScrollNav] = useState(false);
 
@@ -53,21 +61,67 @@ const Navbar = ({ toggle }) => {
             </MobileIcon>
             <NavMenu>
               <NavItem>
-                <NavLinks to="/staffentry">Staff Entry</NavLinks>
+                <DropNavLinks>
+                  <CDropdown>
+                    <CDropdownToggle color="secondary">
+                      Staff/Board Entry
+                    </CDropdownToggle>
+                    <CDropdownMenu>
+                      <CDropdownItem href="/staffentry">
+                        Staff Entry
+                      </CDropdownItem>
+                      <CDropdownItem href="/boardentry">
+                        Board Entry
+                      </CDropdownItem>
+                    </CDropdownMenu>
+                  </CDropdown>
+                </DropNavLinks>
               </NavItem>
 
               <NavItem>
-                <NavLinks to="/boardentry">Board Entry</NavLinks>
+                <DropNavLinks>
+                  <CDropdown>
+                    <CDropdownToggle color="secondary">
+                      Exeutive/CEO entry
+                    </CDropdownToggle>
+                    <CDropdownMenu>
+                      <CDropdownItem href="/executiveentry">
+                        Exe. Director Entry
+                      </CDropdownItem>
+                      <CDropdownItem href="/ceoentry">CEO Entry</CDropdownItem>
+                    </CDropdownMenu>
+                  </CDropdown>
+                </DropNavLinks>
               </NavItem>
+
               <NavItem>
-                <NavLinks to="/executiveentry">Exe. Director Entry</NavLinks>
+                <DropNavLinks>
+                  <CDropdown>
+                    <CDropdownToggle color="secondary">
+                      Upc. Events/Publication entry
+                    </CDropdownToggle>
+                    <CDropdownMenu>
+                      <CDropdownItem href="#">
+                        Upcoming Events Entry
+                      </CDropdownItem>
+                      <CDropdownItem href="#">Publication Entry</CDropdownItem>
+                    </CDropdownMenu>
+                  </CDropdown>
+                </DropNavLinks>
               </NavItem>
-              <NavItem>
+
+              {/* <NavItem>
                 <NavLinks to="/ceoentry">CEO Entry</NavLinks>
-              </NavItem>
+              </NavItem> */}
             </NavMenu>
             <NavBtn>
-              <NavBtnLink to="/">Logout</NavBtnLink>
+              <CButton
+                type="button"
+                className="btn btn-success rounded-pill"
+                onClick={handleLogout}
+              >
+                LogOut
+              </CButton>
             </NavBtn>
           </NavbarContainer>
         </Nav>

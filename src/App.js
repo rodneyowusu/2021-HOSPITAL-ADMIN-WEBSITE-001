@@ -5,19 +5,62 @@ import BoardEntry from "./container/BoardEntry";
 import CEOentry from "./container/CEOentry";
 import ExecutiveEntry from "./container/ExecutiveEntry";
 import Home from "./container/Home";
+import Login from "./container/LoginPage/Login";
+import Signup from "./container/LoginPage/Signup";
+import { UserAuthContextProvider } from "./component/Context/UserAuthContext";
+import ProtectedRoute from "./container/LoginPage/ProtectedRoute";
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/staffentry" element={<About />} />
-        <Route path="/ceoentry" element={<CEOentry />} />
-        <Route path="/boardentry" element={<BoardEntry />} />
-        <Route path="/executiveentry" element={<ExecutiveEntry />} />
+      <UserAuthContextProvider>
+        <Routes>
+          <Route
+            path="/home"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/staffentry"
+            element={
+              <ProtectedRoute>
+                <About />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/ceoentry"
+            element={
+              <ProtectedRoute>
+                <CEOentry />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/boardentry"
+            element={
+              <ProtectedRoute>
+                <BoardEntry />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/executiveentry"
+            element={
+              <ProtectedRoute>
+                <ExecutiveEntry />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
 
-        <Route path="*" element={<Home />} />
-      </Routes>
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </UserAuthContextProvider>
     </Router>
   );
 }

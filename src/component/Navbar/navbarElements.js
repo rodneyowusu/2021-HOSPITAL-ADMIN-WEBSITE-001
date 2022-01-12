@@ -81,7 +81,7 @@ export const NavLogo = styled(LinkR)`
 export const MobileIcon = styled.div`
   display: none;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     display: block;
     position: absolute;
     top: 0;
@@ -100,7 +100,7 @@ export const NavMenu = styled.ul`
   text-align: center;
   margin-right: -22px;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     display: none;
   }
 `;
@@ -128,11 +128,30 @@ export const NavLinks = styled(LinkR)`
   }
 `;
 
+export const DropNavLinks = styled.div`
+  color: black;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+
+  &:hover {
+    //This is to cause a green line beneath the nav items when scrolling.
+    border-bottom: 3px solid #01bf71;
+  }
+
+  &:active {
+    border-bottom: 3px solid #01bf71;
+  }
+`;
+
 export const NavBtn = styled.nav`
   display: flex;
   align-items: center;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     display: none;
   }
 `;

@@ -7,10 +7,10 @@ import {
   SidebarMenu,
   SidebarLink,
   SideBtnWrap,
-  SidebarRoute,
 } from "./sidebarElements";
+import { CButton } from "@coreui/react";
 
-const SideBar = ({ isOpen, toggle }) => {
+const SideBar = ({ isOpen, toggle, handleLogout }) => {
   return (
     <SideBarContainer isOpen={isOpen} onClick={toggle}>
       <Icon onClick={toggle}>
@@ -30,9 +30,22 @@ const SideBar = ({ isOpen, toggle }) => {
           <SidebarLink to="/ceoentry" onClick={toggle}>
             CEO Entry
           </SidebarLink>
+          <SidebarLink to="#" onClick={toggle}>
+            Upcoming Events Entry
+          </SidebarLink>
+          <SidebarLink to="#" onClick={toggle}>
+            Publication Entry
+          </SidebarLink>
         </SidebarMenu>
         <SideBtnWrap>
-          <SidebarRoute to="/">Logout</SidebarRoute>
+          <CButton
+            type="button"
+            className="btn btn-success rounded-pill"
+            onClick={handleLogout}
+            style={{ marginBottom: "15px" }}
+          >
+            LogOut
+          </CButton>
         </SideBtnWrap>
       </SidebarWrapper>
     </SideBarContainer>

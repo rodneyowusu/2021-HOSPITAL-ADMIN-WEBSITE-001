@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { CCallout, CContainer } from "@coreui/react";
-import db from "./../../firebase";
+import { db } from "./../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import Spinner from "./../../component/Spinner/Spinner";
 import "./Home.css";
+import { useUserAuth } from "../../component/Context/UserAuthContext";
+import AbortController from "abort-controller";
 
 const HomeInfo = () => {
   const [bookInfo, setbookInfo] = useState("");
   const [loading, setloading] = useState(false);
+  const { user } = useUserAuth();
+  const componentMounted = useRef(true);
 
   // useEffect(() => {
   //   setloading(true);
@@ -23,9 +27,11 @@ const HomeInfo = () => {
 
   useEffect(() => {
     setloading(true);
+    let cancel = false; // This helps to unmount useEffect when a home is called mistakingly
     const colRef = collection(db, "contacts");
     getDocs(colRef)
       .then((snapshot) => {
+        if (cancel) return; // The condition here helps to do so
         let newBookinfo = [];
         snapshot.docs.forEach((doc) => {
           newBookinfo.push({ id: doc.id, ...doc.data() });
@@ -37,6 +43,9 @@ const HomeInfo = () => {
       .catch((err) => {
         console.log(err);
       });
+    return () => {
+      cancel = true;
+    };
   }, []);
 
   // const theinfo = useBookInfo();

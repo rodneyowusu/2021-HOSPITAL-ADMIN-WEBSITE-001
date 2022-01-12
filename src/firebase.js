@@ -2,7 +2,7 @@
 import { getStorage } from "firebase/storage";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-// import { getAuth } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDZnr2rZGoSdWmDUXWilkT46I4z3G6c57U",
@@ -33,12 +33,14 @@ const app = initializeApp(firebaseConfig);
 //Initialize Firestore
 var db = getFirestore(app);
 
-//Creating Collection Ref
+//Creating Collection Ref done on the main page
 // const colRef = collection(db , "contacts")
 
 // //Get Collection Data
 // getDocs(colRef)
 
+const auth = getAuth(app);
+
 const storage = getStorage(app);
 
-export { storage, db as default };
+export { storage, db, auth, app as default };
