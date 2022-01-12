@@ -17,7 +17,7 @@ const Signup = () => {
     setError("");
     try {
       await signUp(email, password);
-      navigate("/login");
+      navigate("/");
     } catch (err) {
       setError(err.message);
     }
@@ -60,7 +60,6 @@ const Signup = () => {
               <Alert variant="danger">
                 Kindly Contact rodneyowusu12@gmail.com for an acount
               </Alert>
-              ;
             </div>
           </Form>
         </div>
