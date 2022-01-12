@@ -73,7 +73,7 @@ const Login = () => {
               className="g-btn"
               type="dark"
               style={{ maxWidth: "500px" }}
-              // onClick={handleGoogleSignIn}
+              onClick={handleGoogleSignIn}
             />
           </div>
         </div>

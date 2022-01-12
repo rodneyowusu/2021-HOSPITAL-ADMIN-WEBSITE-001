@@ -23,10 +23,11 @@ export function UserAuthContextProvider({ children }) {
   function logOut() {
     return signOut(auth);
   }
-  //   function googleSignIn() {
-  //     const googleAuthProvider = new GoogleAuthProvider();
-  //     return signInWithPopup(auth, googleAuthProvider);
-  //   }
+
+  function googleSignIn() {
+    const googleAuthProvider = new GoogleAuthProvider();
+    return signInWithPopup(auth, googleAuthProvider);
+  }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
@@ -40,7 +41,9 @@ export function UserAuthContextProvider({ children }) {
   }, []);
 
   return (
-    <userAuthContext.Provider value={{ user, signUp, logIn, logOut }}>
+    <userAuthContext.Provider
+      value={{ user, signUp, logIn, logOut, googleSignIn }}
+    >
       {children}
     </userAuthContext.Provider>
   );
