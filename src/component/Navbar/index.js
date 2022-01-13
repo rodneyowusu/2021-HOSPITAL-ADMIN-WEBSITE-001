@@ -52,7 +52,7 @@ const Navbar = ({ toggle, handleLogout }) => {
       <IconContext.Provider value={{ color: "#fff" }}>
         <Nav>
           <NavbarContainer>
-            <NavLogo to="/" onClick={toggleHome}>
+            <NavLogo to="/home" onClick={toggleHome}>
               <Avatar src={Image} style={{ marginRight: "0.5rem" }} />
               AyireAdmin
             </NavLogo>
