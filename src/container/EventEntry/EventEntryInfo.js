@@ -6,10 +6,13 @@ import { storage } from "./../../firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
-export default function BoardEntryInfo() {
-  const [staffName, setName] = useState("");
-  const [phoneNo, setphoneNo] = useState("");
-  const [staffAbout, setAbout] = useState("");
+export default function AboutInfo() {
+  const [eventHeader, setEventHeader] = useState("");
+  const [description, setDescription] = useState("");
+  const [extra, setExtra] = useState("");
+  const [time, setTime] = useState("");
+  const [venue, setVenue] = useState("");
+  const [date, setDate] = useState("");
   const [loader, setLoader] = useState(false);
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState("");
@@ -26,57 +29,36 @@ export default function BoardEntryInfo() {
     setLoader(true);
 
     let docData = {
-      staffName: staffName,
-      phoneNo: phoneNo,
-      staffAboutTitle: "About " + staffName,
-      staffAbout: staffAbout,
-      staffImg: url,
-      date: new Date().getTime(),
+      header: eventHeader,
+      date: date,
+      description: description,
+      time: time,
+      venue: venue,
+      image: url,
+      extra: extra,
+      dateId: new Date().getTime(),
     };
 
     //This helps to create auto-generated id
-    const colRef = collection(db, "Board");
+    const colRef = collection(db, "UpcomingEvents");
     addDoc(colRef, docData)
       .then(() => {
         setLoader(false);
-        alert("Board Member has been added Successfully");
+        alert("Event has been added Successfully");
       })
       .catch((error) => {
         alert(error.message);
         setLoader(false);
       });
 
-    setName("");
-
-    setphoneNo("");
-    setAbout("");
+    setExtra("");
+    setEventHeader("");
+    setDescription("");
+    setTime("");
+    setDate("");
     setImage(null);
+    setVenue("");
   };
-
-  // const handleUpload = () => {
-  //   const uploadTask = storage.ref(`images/${image.name}`).put(image);
-  //   uploadTask.on(
-  //     "state_changed",
-  //     (snapshot) => {
-  //       const progress = Math.round(
-  //         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-  //       );
-  //       setProgress(progress);
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //     },
-  //     () => {
-  //       storage
-  //         .ref("images")
-  //         .child(image.name)
-  //         .getDownloadURL()
-  //         .then((url) => {
-  //           setUrl(url);
-  //         });
-  //     }
-  //   );
-  // };
 
   const handleUpload = () => {
     const storageRef = ref(storage, `images/${image.name}`);
@@ -107,24 +89,45 @@ export default function BoardEntryInfo() {
       <CContainer fluid className="container-sm" style={{ marginTop: "60px" }}>
         <form className="form" onSubmit={handleSubmit}>
           <h1>
-            Add <b>BOARD</b> Personnel Here
+            Add <b>UPCOMING EVENTS</b> Here
           </h1>
-          <label>Name</label>
+
+          <label>Event Header</label>
           <input
-            placeholder="Name"
-            value={staffName}
-            name="name"
-            onChange={(e) => setName(e.target.value)}
+            placeholder="Event Header"
+            value={eventHeader}
+            name="Event Header"
+            onChange={(e) => setEventHeader(e.target.value)}
           />
-          <label htmlFor="phone">
-            Phone No (This Won't Be Displayed on Site)
+
+          <label>Event Date (dd/mm/yyyy)</label>
+          <input
+            placeholder="Event Date"
+            value={date}
+            name="Event Date"
+            onChange={(e) => setDate(e.target.value)}
+          />
+
+          <label>Event Time (hh:mm) </label>
+          <input
+            placeholder="Event Time"
+            value={time}
+            name="Event Time"
+            onChange={(e) => setTime(e.target.value)}
+          />
+
+          <label>Venue</label>
+          <input
+            placeholder="Venue"
+            value={venue}
+            name="Venue"
+            onChange={(e) => setVenue(e.target.value)}
+          />
+
+          <label>
+            Upload Event Image (Wait to see "UPLOADED" before you submit)
           </label>
-          <input
-            placeholder="Phone Number"
-            value={phoneNo}
-            onChange={(e) => setphoneNo(e.target.value)}
-          />
-          <label>Upload Image (Wait to see "UPLOADED" before you submit)</label>
+
           <input
             style={{
               fontSize: "12px",
@@ -133,6 +136,7 @@ export default function BoardEntryInfo() {
             type="file"
             onChange={handleChange}
           />
+
           <CButton
             type="button"
             className="btn btn-secondary rounded-pill btn-sm"
@@ -142,13 +146,22 @@ export default function BoardEntryInfo() {
           </CButton>
           {uploaded}
 
-          <label style={{ marginTop: "15px" }}>About</label>
+          <label style={{ marginTop: "15px" }}>Description</label>
           <textarea
-            placeholder="About the staff"
-            value={staffAbout}
-            name="About"
-            onChange={(e) => setAbout(e.target.value)}
+            placeholder="Details about the event"
+            value={description}
+            name="description"
+            onChange={(e) => setDescription(e.target.value)}
           ></textarea>
+
+          <label>Add Special Note</label>
+          <input
+            placeholder="Special Note"
+            value={extra}
+            name="Special Note"
+            onChange={(e) => setExtra(e.target.value)}
+          />
+
           <button
             className="appbutton"
             type="submit"

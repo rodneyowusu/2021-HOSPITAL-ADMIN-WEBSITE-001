@@ -30,10 +30,10 @@ const SideBar = ({ isOpen, toggle, handleLogout }) => {
           <SidebarLink to="/ceoentry" onClick={toggle}>
             CEO Entry
           </SidebarLink>
-          <SidebarLink to="#" onClick={toggle}>
+          <SidebarLink to="/evententry" onClick={toggle}>
             Upcoming Events Entry
           </SidebarLink>
-          <SidebarLink to="#" onClick={toggle}>
+          <SidebarLink to="/publicationentry" onClick={toggle}>
             Publication Entry
           </SidebarLink>
         </SidebarMenu>

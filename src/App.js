@@ -6,6 +6,8 @@ import CEOentry from "./container/CEOentry";
 import ExecutiveEntry from "./container/ExecutiveEntry";
 import Home from "./container/Home";
 import Login from "./container/LoginPage/Login";
+import EventEntry from "./container/EventEntry";
+import PublicationEntry from "./container/PublicationEntry";
 import Signup from "./container/LoginPage/Signup";
 import { UserAuthContextProvider } from "./component/Context/UserAuthContext";
 import ProtectedRoute from "./container/LoginPage/ProtectedRoute";
@@ -55,6 +57,25 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="/evententry"
+            element={
+              <ProtectedRoute>
+                <EventEntry />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/publicationentry"
+            element={
+              <ProtectedRoute>
+                <PublicationEntry />
+              </ProtectedRoute>
+            }
+          />
+
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
 

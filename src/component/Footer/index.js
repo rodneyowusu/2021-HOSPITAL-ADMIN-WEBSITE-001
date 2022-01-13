@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <>
       <CFooter
-        style={{ marginTop: "10px", display: "flex", position: "relative" }}
+        style={{ marginTop: "30px", display: "flex", position: "relative" }}
       >
         <div>
           <CLink target="blank" href="https://ayireclinic.com">

@@ -1,7 +1,7 @@
 .thebody {
-  margin-top: -50px;
+  height: fit-content;
 }
-@media screen and (max-height: 660px) {
+/* @media screen and (max-height: 660px) {
   .thebody {
     margin-top: -80px;
   }
@@ -34,4 +34,4 @@
   .thebody {
     margin-top: -420px;
   }
-}
+} */

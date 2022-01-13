@@ -28,6 +28,7 @@ export default function AboutInfo() {
 
     let docData = {
       staffName: staffName,
+      staffPosition: staffPosition,
       phoneNo: phoneNo,
       staffAboutTitle: "About " + staffName,
       staffAbout: staffAbout,
@@ -48,7 +49,7 @@ export default function AboutInfo() {
       });
 
     setName("");
-
+    setPosition("");
     setphoneNo("");
     setAbout("");
     setImage(null);
@@ -80,11 +81,7 @@ export default function AboutInfo() {
 
   return (
     <>
-      <CContainer
-        fluid
-        className="container-sm"
-        style={{ marginTop: "70px", marginBottom: " 90px" }}
-      >
+      <CContainer fluid className="container-sm" style={{ marginTop: "60px" }}>
         <form className="form" onSubmit={handleSubmit}>
           <h1>
             Add <b>EXECUTIVE</b> Personnel Here

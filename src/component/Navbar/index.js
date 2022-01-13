@@ -19,7 +19,6 @@ import {
   MobileIcon,
   NavMenu,
   NavItem,
-  NavLinks,
   NavBtn,
   DropNavLinks,
 } from "./navbarElements";
@@ -101,10 +100,12 @@ const Navbar = ({ toggle, handleLogout }) => {
                       Upc. Events/Publication entry
                     </CDropdownToggle>
                     <CDropdownMenu>
-                      <CDropdownItem href="#">
+                      <CDropdownItem href="/evententry">
                         Upcoming Events Entry
                       </CDropdownItem>
-                      <CDropdownItem href="#">Publication Entry</CDropdownItem>
+                      <CDropdownItem href="/publicationentry">
+                        Publication Entry
+                      </CDropdownItem>
                     </CDropdownMenu>
                   </CDropdown>
                 </DropNavLinks>

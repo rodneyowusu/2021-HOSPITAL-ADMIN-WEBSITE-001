@@ -70,7 +70,7 @@ const HomeInfo = () => {
     return infoarray.map((info) =>
       dates == info[1].date ? (
         <CCallout
-          style={{ marginTop: "70px" }}
+          style={{ marginTop: "10px" }}
           color="primary"
           key={info[1].id}
         >
