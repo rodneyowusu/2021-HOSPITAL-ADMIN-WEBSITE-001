@@ -36,6 +36,9 @@ const SideBar = ({ isOpen, toggle, handleLogout }) => {
           <SidebarLink to="/publicationentry" onClick={toggle}>
             Publication Entry
           </SidebarLink>
+          <SidebarLink to="/newsentry" onClick={toggle}>
+            News Entry
+          </SidebarLink>
         </SidebarMenu>
         <SideBtnWrap>
           <CButton
