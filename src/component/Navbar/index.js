@@ -63,7 +63,7 @@ const Navbar = ({ toggle, handleLogout }) => {
                 <DropNavLinks>
                   <CDropdown>
                     <CDropdownToggle color="secondary">
-                      Staff/Board Entry
+                      Staff/Board/News Entry
                     </CDropdownToggle>
                     <CDropdownMenu>
                       <CDropdownItem href="/staffentry">
@@ -71,6 +71,9 @@ const Navbar = ({ toggle, handleLogout }) => {
                       </CDropdownItem>
                       <CDropdownItem href="/boardentry">
                         Board Entry
+                      </CDropdownItem>
+                      <CDropdownItem href="/newsentry">
+                        News Entry
                       </CDropdownItem>
                     </CDropdownMenu>
                   </CDropdown>

@@ -11,6 +11,7 @@ import PublicationEntry from "./container/PublicationEntry";
 import Signup from "./container/LoginPage/Signup";
 import { UserAuthContextProvider } from "./component/Context/UserAuthContext";
 import ProtectedRoute from "./container/LoginPage/ProtectedRoute";
+import NewsEntry from "./container/NewsEntry"
 
 function App() {
   return (
@@ -54,6 +55,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <ExecutiveEntry />
+              </ProtectedRoute>
+            }
+          />
+
+<Route
+            path="/newsentry"
+            element={
+              <ProtectedRoute>
+                <NewsEntry/>
               </ProtectedRoute>
             }
           />
